@@ -1,11 +1,12 @@
 import React from "react";
 import { getWeatherByCoordinates } from "../util/dark-sky-api-util";
+import { connect } from "react-redux";
 
 class WeatherStatusComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentLocation: "Florida",
+      coordinates: "",
       json: {}
     };
   }
@@ -15,21 +16,32 @@ class WeatherStatusComponent extends React.Component {
   }
 
   async getValues() {
-    this.setState({ json: await getWeatherByCoordinates() });
+    if (this.props.coords) {
+      this.setState({
+        json: await getWeatherByCoordinates(
+          `${this.props.coords.latitude},${this.props.coords.longitude}`
+        )
+      });
+      this.props.dispatch({ type: "DARK_SKY", value: this.props.coords });
+    }
   }
 
   render() {
-    console.log(this.state.json);
-
     return (
       <div>
         <h1>
-          Hello, it's raining like shit, at{" "}
-          {this.state.json.daily && this.state.json.daily.summary}
+          Hello,{" "}
+          {this.state.json.daily ? this.state.json.daily.summary : "loading..."}
         </h1>
+        {this.props.count}
       </div>
     );
   }
 }
 
-export default WeatherStatusComponent;
+const mapStateToProps = state => ({
+  darkSkyJson: state.darkSkyJson,
+  locationInfo: state.locationInfo
+});
+
+export default connect(mapStateToProps)(WeatherStatusComponent);

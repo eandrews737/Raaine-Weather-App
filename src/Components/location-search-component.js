@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { geolocated } from "react-geolocated";
 
 class LocationSearchComponent extends React.Component {
@@ -17,7 +18,11 @@ class LocationSearchComponent extends React.Component {
         <div>or</div>
         <button
           onClick={() => {
-            this.setState({ redirect: true });
+            this.props.dispatch({
+              type: "ADD_LOCATION",
+              value: this.props.coords
+            });
+            this.props.history.push("/search");
           }}
         >
           Allow Location
@@ -27,4 +32,8 @@ class LocationSearchComponent extends React.Component {
   }
 }
 
-export default geolocated()(LocationSearchComponent);
+const mapStateToProps = state => ({
+  locationInfo: state.locationInfo
+});
+
+export default connect(mapStateToProps)(geolocated()(LocationSearchComponent));
