@@ -11,6 +11,8 @@ class LocationSearchComponent extends React.Component {
   }
 
   render() {
+    const { history, dispatch } = this.props;
+
     return (
       <div>
         <div>Search by City</div>
@@ -18,11 +20,11 @@ class LocationSearchComponent extends React.Component {
         <div>or</div>
         <button
           onClick={() => {
-            this.props.dispatch({
+            dispatch({
               type: "ADD_LOCATION",
               value: this.props.coords
             });
-            this.props.history.push("/search");
+            history.push("/search");
           }}
         >
           Allow Location

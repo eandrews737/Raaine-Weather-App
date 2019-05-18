@@ -16,24 +16,26 @@ class WeatherStatusComponent extends React.Component {
   }
 
   async getValues() {
-    if (this.props.coords) {
+    const { coords, dispatch } = this.props;
+
+    if (coords) {
       this.setState({
         json: await getWeatherByCoordinates(
-          `${this.props.coords.latitude},${this.props.coords.longitude}`
+          `${coords.latitude},${coords.longitude}`
         )
       });
-      this.props.dispatch({ type: "DARK_SKY", value: this.props.coords });
+      dispatch({ type: "DARK_SKY", value: this.props.coords });
     }
   }
 
   render() {
+    const {
+      json: { daily }
+    } = this.state;
+
     return (
       <div>
-        <h1>
-          Hello,{" "}
-          {this.state.json.daily ? this.state.json.daily.summary : "loading..."}
-        </h1>
-        {this.props.count}
+        <h1>Hello, {daily ? daily.summary : "loading..."}</h1>
       </div>
     );
   }
