@@ -1,5 +1,4 @@
 import React from "react";
-import { getWeatherByCoordinates } from "../util/dark-sky-api-util";
 import { connect } from "react-redux";
 
 class WeatherStatusComponent extends React.Component {
@@ -11,31 +10,14 @@ class WeatherStatusComponent extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.getValues();
-  }
-
-  async getValues() {
-    const { coords, dispatch } = this.props;
-
-    if (coords) {
-      this.setState({
-        json: await getWeatherByCoordinates(
-          `${coords.latitude},${coords.longitude}`
-        )
-      });
-      dispatch({ type: "DARK_SKY", value: this.props.coords });
-    }
-  }
-
   render() {
-    const {
-      json: { daily }
-    } = this.state;
+    const { darkSkyJson } = this.props;
 
     return (
       <div>
-        <h1>Hello, {daily ? daily.summary : "loading..."}</h1>
+        <h1>
+          Hello, {darkSkyJson.daily ? darkSkyJson.daily.summary : "loading..."}
+        </h1>
       </div>
     );
   }
