@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import WeeklyForecastComponent from "./weekly-forecast-component";
 
-class WeatherStatusComponent extends React.Component {
+class CurrentWeatherComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,11 +14,17 @@ class WeatherStatusComponent extends React.Component {
   render() {
     const { darkSkyJson } = this.props;
 
+    console.log("darksky ", darkSkyJson);
+
     return (
       <div>
         <h1>
-          Hello, {darkSkyJson.daily ? darkSkyJson.daily.summary : "loading..."}
+          Hello,{" "}
+          {darkSkyJson && darkSkyJson.daily
+            ? darkSkyJson.daily.summary
+            : "loading..."}
         </h1>
+        <WeeklyForecastComponent />
       </div>
     );
   }
@@ -28,4 +35,4 @@ const mapStateToProps = state => ({
   locationInfo: state.locationInfo
 });
 
-export default connect(mapStateToProps)(WeatherStatusComponent);
+export default connect(mapStateToProps)(CurrentWeatherComponent);
