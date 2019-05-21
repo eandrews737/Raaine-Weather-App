@@ -13,3 +13,14 @@ export function getWeatherByCoordinates(coordinates = "42.3601,-71.0589") {
       console.log(error);
     });
 }
+
+export function getCoordinatesbyIp() {
+  return axios
+    .get(`https://cors.io/?http://ip-api.com/json`)
+    .then(Response => {
+      return Response.data;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}
