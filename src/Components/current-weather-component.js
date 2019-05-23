@@ -21,9 +21,7 @@ class CurrentWeatherComponent extends React.Component {
   // get data on reload
   // by default search by IP
   async handleFreshReload() {
-    const { dispatch, history } = this.props;
-
-    history.push("/search");
+    const { dispatch } = this.props;
 
     // get location by ip
     await getCoordinatesbyIp()
