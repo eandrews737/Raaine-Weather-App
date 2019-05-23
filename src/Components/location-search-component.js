@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { geolocated } from "react-geolocated";
+import Button from "@material-ui/core/Button";
 import { getWeatherByCoordinates, getCoordinatesbyIp } from "../util/api-util";
 
 class LocationSearchComponent extends React.Component {
@@ -40,9 +40,13 @@ class LocationSearchComponent extends React.Component {
     return (
       <div className="location-search-box">
         <div className="ip-search-button">
-          <button onClick={() => this.handleLocationButton()}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => this.handleLocationButton()}
+          >
             Search By Your Location
-          </button>
+          </Button>
         </div>
       </div>
     );
