@@ -2,7 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import * as moment from "moment";
 
-import { dayOfWeek, temperatureConversion } from "../util/conversion-util";
+import {
+  dayOfWeek,
+  temperatureConversion,
+  getWeatherStatusIcon
+} from "../util/weather-util";
 
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -78,7 +82,7 @@ class WeeklyForecastComponent extends React.Component {
                     <div>
                       <div>{dayOfWeek(moment.unix(day.time).isoWeekday())}</div>
                       <div>{moment.unix(day.time).format("MMM DD")}</div>
-                      <div>insert icon: {day.icon}</div>
+                      <img src={getWeatherStatusIcon(day.icon)} />
                     </div>
                   </CustomTableCell>
                   <CustomTableCell align="right">{day.summary}</CustomTableCell>
