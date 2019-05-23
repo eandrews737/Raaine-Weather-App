@@ -87,10 +87,8 @@ class WeeklyForecastComponent extends React.Component {
                   </CustomTableCell>
                   <CustomTableCell align="right">{day.summary}</CustomTableCell>
                   <CustomTableCell align="right">
-                    {Math.round(temperatureConversion(day.temperatureHigh))}
-                    {`\xB0`}/
-                    {Math.round(temperatureConversion(day.temperatureLow))}
-                    {`\xB0`}
+                    {temperatureConversion(day.temperatureHigh)}/
+                    {temperatureConversion(day.temperatureLow)}
                   </CustomTableCell>
                   <CustomTableCell align="right">
                     {Math.round(day.precipProbability * 100)}%

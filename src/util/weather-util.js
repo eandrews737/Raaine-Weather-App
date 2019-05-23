@@ -36,14 +36,12 @@ export function dayOfWeek(dayByNumber) {
 
 // returns temperature based on selected scale
 export function temperatureConversion(temperature, isFahrenheit = true) {
-  if (isFahrenheit) return temperature;
-  else return temperature * (5 / 9) - 32;
+  if (isFahrenheit) return Math.round(temperature) + `${`\xB0`}`;
+  else return Math.round(temperature * (5 / 9) - 32) + `${`\xB0`}`;
 }
 
 // returns the correct icon for each weather status
 export function getWeatherStatusIcon(status) {
-  const route = "../assets/animated/";
-
   switch (status) {
     case "clear-day":
       return clearDayIcon;
