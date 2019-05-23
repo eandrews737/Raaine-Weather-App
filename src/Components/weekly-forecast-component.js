@@ -50,11 +50,6 @@ class WeeklyForecastComponent extends React.Component {
     };
   }
 
-  // returns icon by status
-  statusToImage(status) {
-    return <div>lol</div>;
-  }
-
   render() {
     const { classes, darkSkyJson } = this.props;
     let sevenDayForecast = [];
@@ -79,11 +74,16 @@ class WeeklyForecastComponent extends React.Component {
               {sevenDayForecast.map((day, index) => (
                 <TableRow className={classes.row} key={index}>
                   <CustomTableCell component="th" scope="row">
-                    <div>
+                    <div
+                      style={{
+                        paddingTop: "12px",
+                        float: "left"
+                      }}
+                    >
                       <div>{dayOfWeek(moment.unix(day.time).isoWeekday())}</div>
                       <div>{moment.unix(day.time).format("MMM DD")}</div>
-                      <img src={getWeatherStatusIcon(day.icon)} />
                     </div>
+                    <img src={getWeatherStatusIcon(day.icon)} />
                   </CustomTableCell>
                   <CustomTableCell align="right">{day.summary}</CustomTableCell>
                   <CustomTableCell align="right">
