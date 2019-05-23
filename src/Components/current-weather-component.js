@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import WeeklyForecastComponent from "./weekly-forecast-component";
 
 class CurrentWeatherComponent extends React.Component {
@@ -19,20 +20,20 @@ class CurrentWeatherComponent extends React.Component {
     return (
       <div>
         <h1>
-          Hello,{" "}
-          {darkSkyJson && darkSkyJson.daily
-            ? darkSkyJson.daily.summary
-            : "loading..."}
+          {darkSkyJson && darkSkyJson.daily ? (
+            darkSkyJson.daily.summary
+          ) : (
+            <CircularProgress />
+          )}
         </h1>
-        <WeeklyForecastComponent />
+        {darkSkyJson && darkSkyJson.daily && <WeeklyForecastComponent />}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  darkSkyJson: state.darkSkyJson,
-  locationInfo: state.locationInfo
+  darkSkyJson: state.darkSkyJson
 });
 
 export default connect(mapStateToProps)(CurrentWeatherComponent);
