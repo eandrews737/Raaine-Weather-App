@@ -22,7 +22,7 @@ class LocationSearchComponent extends React.Component {
       .then(results => {
         this.setState({ latitude: results.lat, longitude: results.lon });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
 
     // load dark sky results in props
     // send the user to the next page
@@ -32,7 +32,7 @@ class LocationSearchComponent extends React.Component {
       .then(results => {
         dispatch({ type: "DARK_SKY", value: results });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   }
 
   render() {
@@ -53,7 +53,8 @@ class LocationSearchComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  darkSkyJson: state.darkSkyJson
+  darkSkyJson: state.darkSkyJson,
+  coordinatesAddress: state.coordinatesAddress
 });
 
 export default connect(mapStateToProps)(LocationSearchComponent);

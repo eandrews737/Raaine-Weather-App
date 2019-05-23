@@ -15,6 +15,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Tooltip from "@material-ui/core/Tooltip";
 
 // Allows the tablecell to be customized a bit further
 const CustomTableCell = withStyles(theme => ({
@@ -83,7 +84,9 @@ class WeeklyForecastComponent extends React.Component {
                       <div>{dayOfWeek(moment.unix(day.time).isoWeekday())}</div>
                       <div>{moment.unix(day.time).format("MMM DD")}</div>
                     </div>
-                    <img src={getWeatherStatusIcon(day.icon)} />
+                    <Tooltip title={day.icon} placement="right">
+                      <img src={getWeatherStatusIcon(day.icon)} />
+                    </Tooltip>
                   </CustomTableCell>
                   <CustomTableCell align="right">{day.summary}</CustomTableCell>
                   <CustomTableCell align="right">
@@ -104,7 +107,8 @@ class WeeklyForecastComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  darkSkyJson: state.darkSkyJson
+  darkSkyJson: state.darkSkyJson,
+  coordinatesAddress: state.coordinatesAddress
 });
 
 export default connect(mapStateToProps)(

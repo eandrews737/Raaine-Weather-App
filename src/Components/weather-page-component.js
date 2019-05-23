@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getWeatherByCoordinates, getCoordinatesbyIp } from "../util/api-util";
+import {
+  getWeatherByCoordinates,
+  getCoordinatesbyIp,
+  getCityFromCoordinates
+} from "../util/api-util";
 import TodayWeatherComponent from "./today-weather-component";
 import WeeklyForecastComponent from "./weekly-forecast-component";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -9,8 +13,8 @@ class CurrentWeatherComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      coordinates: "",
-      json: {}
+      latitude: "28.538336",
+      longitude: "-81.379234"
     };
   }
 
@@ -28,7 +32,7 @@ class CurrentWeatherComponent extends React.Component {
       .then(results => {
         this.setState({ latitude: results.lat, longitude: results.lon });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
 
     // load dark sky results in props
     // send the user to the next page
@@ -38,7 +42,14 @@ class CurrentWeatherComponent extends React.Component {
       .then(results => {
         dispatch({ type: "DARK_SKY", value: results });
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
+
+    // get the address of the IP
+    await getCityFromCoordinates(this.state.latitude, this.state.longitude)
+      .then(results => {
+        dispatch({ type: "SET_ADDRESS", value: results.results[0].components });
+      })
+      .catch(error => console.error(error));
   }
 
   render() {
@@ -58,6 +69,7 @@ class CurrentWeatherComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  coordinatesAddress: state.coordinatesAddress,
   darkSkyJson: state.darkSkyJson
 });
 
