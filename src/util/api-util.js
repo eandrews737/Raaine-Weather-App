@@ -9,9 +9,7 @@ export function getWeatherByCoordinates(coordinates = "42.3601,-71.0589") {
     .then(Response => {
       return Response.data;
     })
-    .catch(function(error) {
-      console.log(error);
-    });
+    .catch(error => console.log(error));
 }
 
 export function getCoordinatesbyIp() {
@@ -20,7 +18,5 @@ export function getCoordinatesbyIp() {
     .then(Response => {
       return Response.data;
     })
-    .catch(function(error) {
-      console.log(error);
-    });
+    .catch(error => console.log(error));
 }

@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as moment from "moment";
+
+import { dayOfWeek, temperatureConversion } from "../util/conversion-util";
+
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -22,13 +25,12 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => ({
   root: {
-    width: "100%",
     marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
+    overflowX: "auto",
+    marginLeft: "5%",
+    marginRight: "5%"
   },
-  table: {
-    minWidth: 700
-  },
+  table: {},
   row: {
     "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.background.default
@@ -44,36 +46,6 @@ class WeeklyForecastComponent extends React.Component {
     };
   }
 
-  // returns day of the week by name
-  dayToString(dayByNumber) {
-    switch (dayByNumber) {
-      case 0:
-        return "Sun";
-      case 1:
-        return "Mon";
-      case 2:
-        return "Tue";
-      case 3:
-        return "Wed";
-      case 4:
-        return "Thu";
-      case 5:
-        return "Fri";
-      case 6:
-        return "Sat";
-      case 7:
-        return "Sun";
-    }
-  }
-
-  // returns temperature based on selected scale
-  temperatureConversion(temperature) {
-    const { isFahrenheit } = this.state;
-
-    if (isFahrenheit) return temperature;
-    else return temperature * (5 / 9) - 32;
-  }
-
   // returns icon by status
   statusToImage(status) {
     return <div>lol</div>;
@@ -85,7 +57,7 @@ class WeeklyForecastComponent extends React.Component {
 
     // tomorrow - a week today
     if (darkSkyJson.daily)
-      sevenDayForecast = darkSkyJson.daily.data.slice(1, 8);
+      sevenDayForecast = darkSkyJson.daily.data.slice(2, 8);
 
     return (
       <Paper className={classes.root}>
@@ -104,20 +76,16 @@ class WeeklyForecastComponent extends React.Component {
                 <TableRow className={classes.row} key={index}>
                   <CustomTableCell component="th" scope="row">
                     <div>
-                      <div>
-                        {this.dayToString(moment.unix(day.time).isoWeekday())}
-                      </div>
+                      <div>{dayOfWeek(moment.unix(day.time).isoWeekday())}</div>
                       <div>{moment.unix(day.time).format("MMM DD")}</div>
                       <div>insert icon: {day.icon}</div>
                     </div>
                   </CustomTableCell>
                   <CustomTableCell align="right">{day.summary}</CustomTableCell>
                   <CustomTableCell align="right">
-                    {Math.round(
-                      this.temperatureConversion(day.temperatureHigh)
-                    )}
+                    {Math.round(temperatureConversion(day.temperatureHigh))}
                     {`\xB0`}/
-                    {Math.round(this.temperatureConversion(day.temperatureLow))}
+                    {Math.round(temperatureConversion(day.temperatureLow))}
                     {`\xB0`}
                   </CustomTableCell>
                   <CustomTableCell align="right">
