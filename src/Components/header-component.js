@@ -1,30 +1,36 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
-import CurrentWeatherComponent from "./current-weather-component";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+
+const styles = {
+  root: {
+    flexGrow: 1
+  }
+};
 
 class HeaderComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      shouldHideCurrentWeatherComponent: true
-    };
-  }
-
   render() {
-    const { shouldShowWeatherComponents } = this.props;
+    const { classes } = this.props;
 
     return (
-      <div id="header" className="App-header">
-        {shouldShowWeatherComponents && <CurrentWeatherComponent />}
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" color="inherit">
+              Weather App
+            </Typography>
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  darkSkyJson: state.darkSkyJson,
-  locationInfo: state.locationInfo
-});
+HeaderComponent.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
-export default connect(mapStateToProps)(withRouter(HeaderComponent));
+export default withStyles(styles)(HeaderComponent);
