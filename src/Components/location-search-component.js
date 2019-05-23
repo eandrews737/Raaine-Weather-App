@@ -7,15 +7,15 @@ class LocationSearchComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      latitude: "",
-      longitude: ""
+      latitude: "28.538336",
+      longitude: "-81.379234"
     };
   }
 
-  async handleSearchByCity() {}
-
   async handleLocationButton() {
     const { dispatch, history } = this.props;
+
+    history.push("/search");
 
     // get location by ip
     await getCoordinatesbyIp()
@@ -32,7 +32,6 @@ class LocationSearchComponent extends React.Component {
       .then(results => {
         dispatch({ type: "DARK_SKY", value: results });
       })
-      .then(() => history.push("/search"))
       .catch(error => console.log(error));
   }
 
@@ -54,7 +53,6 @@ class LocationSearchComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  locationInfo: state.locationInfo,
   darkSkyJson: state.darkSkyJson
 });
 
