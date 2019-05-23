@@ -3,6 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import weatherSvg from "../assets/animated/weather.svg";
 
 const styles = {
   root: {
@@ -18,6 +19,7 @@ class HeaderComponent extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
+            <img src={weatherSvg} />
             <Typography variant="h6" color="inherit">
               Weather App
             </Typography>
