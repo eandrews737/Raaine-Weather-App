@@ -17,7 +17,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Tooltip from "@material-ui/core/Tooltip";
 
-// Allows the tablecell to be customized a bit further
+// customized material UI table cell
 const CustomTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -81,7 +81,9 @@ class WeeklyForecastComponent extends React.Component {
                         float: "left"
                       }}
                     >
-                      <div>{dayOfWeek(moment.unix(day.time).isoWeekday())}</div>
+                      <div>
+                        <b>{dayOfWeek(moment.unix(day.time).isoWeekday())}</b>
+                      </div>
                       <div>{moment.unix(day.time).format("MMM DD")}</div>
                     </div>
                     <Tooltip title={day.icon} placement="right">
@@ -90,7 +92,7 @@ class WeeklyForecastComponent extends React.Component {
                   </CustomTableCell>
                   <CustomTableCell align="right">{day.summary}</CustomTableCell>
                   <CustomTableCell align="right">
-                    {temperatureConversion(day.temperatureHigh)}/
+                    <b>{temperatureConversion(day.temperatureHigh)}</b>/
                     {temperatureConversion(day.temperatureLow)}
                   </CustomTableCell>
                   <CustomTableCell align="right">
