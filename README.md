@@ -1,6 +1,6 @@
 # Raaine
 
-A simple weather app I created to demonstrate my React-ive abilities. It utilizes a bunch of impressive technologies.
+A simple weather app, I devoloped, to demonstrate my React-ive abilities. It utilizes a bunch of impressive technologies.
 This includes:
 
 - React
