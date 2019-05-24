@@ -69,3 +69,24 @@
   margin-left: 10%;
   margin-right: 10%;
 }
+
+.current-weather-component {
+  margin-top: 25px;
+  padding-top: 25px;
+  padding-left: 5%;
+  width: 600px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: left;
+  padding-bottom: 40px;
+  border: 1.5px solid black;
+  border-radius: 10px;
+}
+
+.current-weather-temp {
+  float: left;
+  font-size: 65px;
+  padding-right: 15%;
+  margin-top: 25px;
+}

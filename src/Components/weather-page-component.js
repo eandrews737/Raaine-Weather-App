@@ -53,18 +53,25 @@ class CurrentWeatherComponent extends React.Component {
   }
 
   render() {
-    const { darkSkyJson } = this.props;
+    const { darkSkyJson, coordinatesAddress } = this.props;
 
     console.log("darksky ", darkSkyJson);
+    console.log("frick ", coordinatesAddress);
 
-    if (darkSkyJson && darkSkyJson.daily)
+    // make sure all bases are covered
+    if (
+      darkSkyJson &&
+      darkSkyJson.daily &&
+      coordinatesAddress &&
+      coordinatesAddress.country
+    )
       return (
         <React.Fragment>
           <TodayWeatherComponent />
           <WeeklyForecastComponent />
         </React.Fragment>
       );
-    else return <CircularProgress />;
+    else return <CircularProgress style={{ marginTop: "15vh" }} />;
   }
 }
 
