@@ -3,7 +3,6 @@ import clearNightIcon from "../assets/animated/night.svg";
 import rainIcon from "../assets/animated/rainy-1.svg";
 import snowIcon from "../assets/animated/snowy-1.svg";
 import sleekIcon from "../assets/animated/snowy-2.svg";
-import windIcon from "../assets/animated/snowy-3.svg";
 import fogIcon from "../assets/animated/cloudy.svg";
 import cloudyIcon from "../assets/animated/cloudy.svg";
 import cloudyDayIcon from "../assets/animated/cloudy-day-2.svg";
@@ -36,14 +35,12 @@ export function dayOfWeek(dayByNumber) {
 
 // returns temperature based on selected scale
 export function temperatureConversion(temperature, isFahrenheit = true) {
-  if (isFahrenheit) return temperature;
-  else return temperature * (5 / 9) - 32;
+  if (isFahrenheit) return Math.round(temperature) + `${`\xB0`}`;
+  else return Math.round(temperature * (5 / 9) - 32) + `${`\xB0`}`;
 }
 
 // returns the correct icon for each weather status
 export function getWeatherStatusIcon(status) {
-  const route = "../assets/animated/";
-
   switch (status) {
     case "clear-day":
       return clearDayIcon;
@@ -56,7 +53,7 @@ export function getWeatherStatusIcon(status) {
     case "sleet":
       return sleekIcon;
     case "wind":
-      return windIcon;
+      return cloudyIcon;
     case "fog":
       return fogIcon;
     case "cloudy":

@@ -1,6 +1,7 @@
 const initialState = {
   locationInfo: {},
-  darkSkyJson: {}
+  darkSkyJson: {},
+  coordinatesAddress: {}
 };
 
 export function reducer(state = initialState, action) {
@@ -11,7 +12,13 @@ export function reducer(state = initialState, action) {
       };
     case "DARK_SKY":
       return {
+        ...state,
         darkSkyJson: action.value
+      };
+    case "SET_ADDRESS":
+      return {
+        ...state,
+        coordinatesAddress: action.value
       };
     default:
       return state;

@@ -14,8 +14,7 @@ class FooterComponent extends React.Component {
 
 const mapStateToProps = state => ({
   darkSkyJson: state.darkSkyJson,
-  locationInfo: state.locationInfo,
-  isDarkSkyLoading: state.isDarkSkyLoading
+  coordinatesAddress: state.coordinatesAddress
 });
 
 export default connect(mapStateToProps)(withRouter(FooterComponent));
