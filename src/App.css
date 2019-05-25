@@ -1,9 +1,11 @@
 .App {
   text-align: center;
+  background-color: #13131b;
+  height: 100vh;
+  color: white;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 25vh;
   display: flex;
   flex-direction: column;
@@ -24,7 +26,6 @@
 }
 
 .App-footer {
-  background-color: #282c34;
   min-height: 5vh;
   display: flex;
   flex-direction: column;
@@ -46,6 +47,11 @@
 .App-footer.closed {
   min-height: 0vh;
   transition: min-height 1000ms ease-in-out;
+}
+
+.footer-stripe {
+  height: 35px;
+  width: 100%;
 }
 
 .location-search-box {
@@ -80,8 +86,6 @@
   margin-left: auto;
   text-align: left;
   padding-bottom: 40px;
-  border: 1.5px solid black;
-  border-radius: 10px;
 }
 
 .current-weather-temp {
