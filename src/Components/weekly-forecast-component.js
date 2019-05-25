@@ -28,20 +28,22 @@ const CustomTableCell = withStyles(theme => ({
   }
 }))(TableCell);
 
-const styles = theme => ({
-  root: {
-    marginTop: theme.spacing.unit * 3,
-    overflowX: "auto",
-    marginLeft: "5%",
-    marginRight: "5%"
-  },
-  table: {},
-  row: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.background.default
+const styles = theme => {
+  return {
+    root: {
+      marginTop: theme.spacing.unit * 3,
+      overflowX: "auto",
+      marginLeft: "5%",
+      marginRight: "5%"
+    },
+    table: { backgroundColor: theme.palette.thirdary },
+    row: {
+      "&:nth-of-type(odd)": {
+        backgroundColor: theme.palette.background.default
+      }
     }
-  }
-});
+  };
+};
 
 class WeeklyForecastComponent extends React.Component {
   constructor(props) {
