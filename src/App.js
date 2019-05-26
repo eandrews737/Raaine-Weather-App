@@ -28,8 +28,7 @@ function App() {
         <Router>
           <HeaderComponent />
           <Switch>
-            <Route exact path="/" component={LocationSearchComponent} />
-            <Route path="/search" component={WeatherPageComponent} />
+            <Route exact path="/" component={WeatherPageComponent} />
             <Route component={NotfoundComponent} />
           </Switch>
           <FooterComponent />
