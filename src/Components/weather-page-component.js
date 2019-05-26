@@ -55,9 +55,6 @@ class CurrentWeatherComponent extends React.Component {
   render() {
     const { darkSkyJson, coordinatesAddress } = this.props;
 
-    console.log("darksky ", darkSkyJson);
-    console.log("frick ", coordinatesAddress);
-
     // make sure all bases are covered
     if (
       darkSkyJson &&
