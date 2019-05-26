@@ -9,13 +9,14 @@ import {
 } from "../util/weather-util";
 
 import { withStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import Card from "@material-ui/core/Card";
+import Grid from "@material-ui/core/Grid";
+import CardContent from "@material-ui/core/CardContent";
 import Tooltip from "@material-ui/core/Tooltip";
+
+import coldIcon from "../assets/svg/cold.svg";
+import warmIcon from "../assets/svg/warm.svg";
 
 // customized material UI table cell
 const CustomTableCell = withStyles(theme => ({
@@ -30,29 +31,22 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => {
   return {
-    root: {
-      marginTop: theme.spacing.unit * 3,
-      overflowX: "auto",
-      marginLeft: "5%",
-      marginRight: "5%"
+    root: { flexGrow: 1 },
+    grid: {
+      paddingTop: "20px",
+      maxWidth: "350px",
+      minWidth: "300px",
+      marginRight: "1%",
+      marginLeft: "1%"
     },
-    table: { backgroundColor: theme.palette.thirdary },
-    row: {
-      "&:nth-of-type(odd)": {
-        backgroundColor: theme.palette.background.default
-      }
+    card: {
+      minWidth: "200px",
+      backgroundColor: "#403d3d"
     }
   };
 };
 
 class WeeklyForecastComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFahrenheit: true
-    };
-  }
-
   render() {
     const { classes, darkSkyJson } = this.props;
     let sevenDayForecast = [];
@@ -62,50 +56,53 @@ class WeeklyForecastComponent extends React.Component {
       sevenDayForecast = darkSkyJson.daily.data.slice(2, 8);
 
     return (
-      <Paper className={classes.root}>
-        {darkSkyJson.daily && (
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <CustomTableCell>Day</CustomTableCell>
-                <CustomTableCell align="right">Description</CustomTableCell>
-                <CustomTableCell align="right">High/Low</CustomTableCell>
-                <CustomTableCell align="right">Chance of Rain</CustomTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {sevenDayForecast.map((day, index) => (
-                <TableRow className={classes.row} key={index}>
-                  <CustomTableCell component="th" scope="row">
-                    <div
-                      style={{
-                        paddingTop: "12px",
-                        float: "left"
-                      }}
-                    >
-                      <div>
-                        <b>{dayOfWeek(moment.unix(day.time).isoWeekday())}</b>
-                      </div>
-                      <div>{moment.unix(day.time).format("MMM DD")}</div>
+      <Grid
+        style={{ paddingBottom: "150px", backgroundColor: "#13131b" }}
+        container
+        className={classes.root}
+        spacing={3}
+        direction="row"
+        justify="center"
+        alignItems="center"
+      >
+        {sevenDayForecast.map((day, index) => (
+          <Grid item className={classes.grid} sm={4} key={index}>
+            <Card className={classes.card} style={{ color: "black" }}>
+              <CardContent>
+                <div>
+                  <div>
+                    <b className="card-header-title">
+                      {dayOfWeek(moment.unix(day.time).isoWeekday())}
+                    </b>
+                    <div className="card-header-subtitle">
+                      {moment.unix(day.time).format("MMM DD")}
                     </div>
-                    <Tooltip title={day.icon} placement="right">
-                      <img src={getWeatherStatusIcon(day.icon)} />
-                    </Tooltip>
-                  </CustomTableCell>
-                  <CustomTableCell align="right">{day.summary}</CustomTableCell>
-                  <CustomTableCell align="right">
-                    <b>{temperatureConversion(day.temperatureHigh)}</b>/
-                    {temperatureConversion(day.temperatureLow)}
-                  </CustomTableCell>
-                  <CustomTableCell align="right">
-                    {Math.round(day.precipProbability * 100)}%
-                  </CustomTableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        )}
-      </Paper>
+                  </div>
+                  <Tooltip title={day.icon} placement="bottom">
+                    <img
+                      style={{ height: "140px", float: "right" }}
+                      src={getWeatherStatusIcon(day.icon)}
+                    />
+                  </Tooltip>
+                </div>
+                <div style={{ paddingTop: "20px", paddingRight: "50px" }}>
+                  <div>
+                    <b className="high-temp-font">
+                      {" "}
+                      <img style={{ height: "40px" }} src={warmIcon} />
+                      {temperatureConversion(day.temperatureHigh)}F
+                    </b>
+                  </div>
+                  <div className="low-temp-font">
+                    <img style={{ height: "40px" }} src={coldIcon} />
+                    {temperatureConversion(day.temperatureLow)}F
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
     );
   }
 }
