@@ -7,7 +7,8 @@ import appIcon from "../assets/svg/protection.svg";
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    color: "white"
   }
 };
 
@@ -17,17 +18,14 @@ class HeaderComponent extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <img
-              style={{ height: "35px", paddingRight: "10px" }}
-              src={appIcon}
-            />
-            <Typography variant="h6" color="inherit">
-              Raaine
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <Toolbar>
+          <div className="white-circle">
+            <img style={{ height: "35px", paddingTop: "7px" }} src={appIcon} />
+          </div>
+          <Typography variant="h6" color="inherit">
+            Raaine
+          </Typography>
+        </Toolbar>
       </div>
     );
   }

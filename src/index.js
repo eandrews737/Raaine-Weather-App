@@ -11,7 +11,7 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App style={{ backgroundColor: "black" }} />
   </Provider>,
   document.getElementById("root")
 );
