@@ -20,6 +20,7 @@ class TodayWeatherComponent extends React.Component {
         <div>
           <div style={{ fontSize: "25px" }}>
             <b>
+              {coordinatesAddress.county}
               {coordinatesAddress.neighborhood}
               {coordinatesAddress.city
                 ? coordinatesAddress.city

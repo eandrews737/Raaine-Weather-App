@@ -14,7 +14,7 @@ export function getWeatherByCoordinates(coordinates = "42.3601,-71.0589") {
 
 export function getCoordinatesbyIp() {
   return axios
-    .get(`https://cors.io/?http://ip-api.com/json`)
+    .get(`http://ip-api.com/json`)
     .then(Response => {
       return Response.data;
     })
