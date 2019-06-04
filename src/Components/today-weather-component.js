@@ -18,6 +18,7 @@ class TodayWeatherComponent extends React.Component {
     return (
       <div className="current-weather-component">
         <div>
+          <h3 style={{ color: "gray" }}>Your Location:</h3>
           <div style={{ fontSize: "25px" }}>
             <b>
               {coordinatesAddress.county}
