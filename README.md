@@ -2,7 +2,9 @@
 
 ## Introduction
 
-A weather app that finds your location via IP and gives you your local weather. It utilizes a bunch of impressive technologies and APIs. See blow for more details.
+A weather app that finds your location via IP and gives you your local weather. It utilizes a bunch of impressive technologies and APIs. See below for more details.
+
+### Technologies Utilized
 
 * `React`
 * `Redux`
@@ -10,10 +12,10 @@ A weather app that finds your location via IP and gives you your local weather. 
 * `Material UI`
 * `Axios API fetching`
 
-## APIs Utilized
+### APIs Utilized
 
-* [Dark Sky](https://darksky.net/dev) 
-* [Ip Tracker](http://ip-api.com/json)
+* [IP Tracker](http://ip-api.com/json) - Get's the User's coordinates from their IP
+* [Dark Sky](https://darksky.net/dev) - Gets the weather information based on their coordinates
 
 ## How to Run
 
