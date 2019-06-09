@@ -21,11 +21,9 @@ class TodayWeatherComponent extends React.Component {
           <h3 style={{ color: "gray" }}>Your Location:</h3>
           <div style={{ fontSize: "25px" }}>
             <b>
-              {coordinatesAddress.county}
-              {coordinatesAddress.neighborhood}
               {coordinatesAddress.city
                 ? coordinatesAddress.city
-                : coordinatesAddress.town}
+                : coordinatesAddress.county || coordinatesAddress.neighborhood}
               ,{" "}
               {coordinatesAddress.country === "USA"
                 ? coordinatesAddress.state_code
