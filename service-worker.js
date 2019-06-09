@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Raaine-Weather-App/precache-manifest.14012882c32578ff2f2b257ccfe93da9.js"
+  "/Raaine-Weather-App/precache-manifest.791f541f2f1e3e5f2ba90987e4f20f9c.js"
 );
 
 self.addEventListener('message', (event) => {
