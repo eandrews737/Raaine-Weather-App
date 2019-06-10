@@ -6,11 +6,11 @@ A weather app that finds your location via IP and gives you your local weather. 
 
 ### Technologies Utilized
 
-* `React`
-* `Redux`
-* `React-Routing`
-* `Material UI`
-* `Axios API fetching`
+* `React` - Javascript framework with live reloading
+* `Redux` - Javascript state management library
+* `React-Routing` - Router library for react that allows dynamic URLs with react
+* `Material UI` - CSS framework created by google for a minimalist aesthetic style
+* `Axios API fetching` - Javascirpt library that makes fetching API calls with better security and error handling
 
 ### APIs Utilized
 
@@ -42,7 +42,7 @@ This will publish master to a branch called gp-branch. This branch controls this
 
 ### Software Used
 
-* [ReactJS](https://reactjs.org/)
+* [ReactJS](https://reactjs.org/) - see above for more details
 
 ### Creators
 
