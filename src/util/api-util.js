@@ -1,10 +1,12 @@
 import axios from "axios";
-import { DARK_SKY_API_KEY, OPENCAGE_API_KEY } from "../env.js";
 
 export function getWeatherByCoordinates(coordinates = "42.3601,-71.0589") {
+  // TODO: fix removal of cors url
   return axios
     .get(
-      `https://cors.io/?https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${coordinates}`
+      `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_DARK_SKY_API_KEY}/${coordinates}`, {
+        mode: 'no-cors'
+      }
     )
     .then(Response => {
       return Response.data;
@@ -12,7 +14,7 @@ export function getWeatherByCoordinates(coordinates = "42.3601,-71.0589") {
     .catch(error => console.error(error));
 }
 
-export function getCoordinatesbyIp() {
+export function getCoordinatesByIp() {
   return axios
     .get(`http://ip-api.com/json`)
     .then(Response => {
@@ -26,7 +28,7 @@ export function getCoordinatesbyIp() {
 export function getCoordinatesFromCity(address) {
   return axios
     .get(
-      `https://api.opencagedata.com/geocode/v1/json?key=${OPENCAGE_API_KEY}&q=${address}`
+      `https://api.opencagedata.com/geocode/v1/json?key=${process.env.REACT_APP_OPENCAGE_API_KEY}&q=${address}`
     )
     .then(Response => {
       return Response.data;
@@ -39,7 +41,7 @@ export function getCoordinatesFromCity(address) {
 export function getCityFromCoordinates(latitude, longtidude) {
   return axios
     .get(
-      `https://api.opencagedata.com/geocode/v1/json?key=${OPENCAGE_API_KEY}&q=${latitude}%2C${longtidude}&pretty=1`
+      `https://api.opencagedata.com/geocode/v1/json?key=${process.env.REACT_APP_OPENCAGE_API_KEY}&q=${latitude}%2C${longtidude}&pretty=1`
     )
     .then(Response => {
       return Response.data;

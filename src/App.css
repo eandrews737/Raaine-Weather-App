@@ -129,13 +129,13 @@
 }
 
 .card-header-title {
-  font-size: 20px;
+  font-size: 25px;
   color: #aba0a0;
   font-weight: bold;
 }
 
 .card-header-subtitle {
-  font-size: 25px;
+  font-size: 18px;
   color: #aba0a0;
   font-weight: lighter;
 }
@@ -145,4 +145,10 @@
   font-size: 25px;
   color: white;
   font-weight: lighter;
+}
+
+.weather-app-parent {
+    max-width: 120vh; 
+    margin: 0 auto; 
+    float: none;
 }

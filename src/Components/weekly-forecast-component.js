@@ -52,21 +52,23 @@ class WeeklyForecastComponent extends React.Component {
     let sevenDayForecast = [];
 
     // tomorrow - a week today
-    if (darkSkyJson.daily)
-      sevenDayForecast = darkSkyJson.daily.data.slice(2, 8);
+    if (darkSkyJson.daily) {
+      sevenDayForecast = darkSkyJson.daily.data.slice(1, 8);
+      console.log(sevenDayForecast);
+    }
 
     return (
       <Grid
         style={{ paddingBottom: "150px", backgroundColor: "#13131b" }}
         container
         className={classes.root}
-        spacing={3}
+        spacing={0}
         direction="row"
         justify="center"
         alignItems="center"
       >
         {sevenDayForecast.map((day, index) => (
-          <Grid item className={classes.grid} sm={4} key={index}>
+          <Grid item className={classes.grid} sm={3} key={index}>
             <Card className={classes.card} style={{ color: "black" }}>
               <CardContent>
                 <div>
@@ -80,6 +82,7 @@ class WeeklyForecastComponent extends React.Component {
                   </div>
                   <Tooltip title={day.icon} placement="bottom">
                     <img
+                      alt="Weather Status Icon"
                       style={{ height: "140px", float: "right" }}
                       src={getWeatherStatusIcon(day.icon)}
                     />
@@ -89,13 +92,13 @@ class WeeklyForecastComponent extends React.Component {
                   <div>
                     <b className="high-temp-font">
                       {" "}
-                      <img style={{ height: "40px" }} src={warmIcon} />
-                      {temperatureConversion(day.temperatureHigh)}F
+                      <img alt="Warm Temp Icon" style={{ height: "40px" }} src={warmIcon} />
+                      {temperatureConversion(day.temperatureHigh)}
                     </b>
                   </div>
                   <div className="low-temp-font">
-                    <img style={{ height: "40px" }} src={coldIcon} />
-                    {temperatureConversion(day.temperatureLow)}F
+                    <img alt="Low Temp Icon" style={{ height: "40px" }} src={coldIcon} />
+                    {temperatureConversion(day.temperatureLow)}
                   </div>
                 </div>
               </CardContent>

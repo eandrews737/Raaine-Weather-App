@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import {
   getWeatherByCoordinates,
-  getCoordinatesbyIp,
+  getCoordinatesByIp,
   getCityFromCoordinates
 } from "../util/api-util";
 import TodayWeatherComponent from "./today-weather-component";
@@ -12,6 +12,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 class CurrentWeatherComponent extends React.Component {
   constructor(props) {
     super(props);
+
+    // defaults to Orlando's coordinates
     this.state = {
       latitude: "28.538336",
       longitude: "-81.379234"
@@ -28,7 +30,7 @@ class CurrentWeatherComponent extends React.Component {
     const { dispatch } = this.props;
 
     // get location by ip
-    await getCoordinatesbyIp()
+    await getCoordinatesByIp()
       .then(results => {
         this.setState({ latitude: results.lat, longitude: results.lon });
       })
@@ -64,8 +66,10 @@ class CurrentWeatherComponent extends React.Component {
     )
       return (
         <React.Fragment>
-          <TodayWeatherComponent />
-          <WeeklyForecastComponent />
+          <div class="weather-app-parent">
+            <TodayWeatherComponent />
+            <WeeklyForecastComponent />
+          </div>
         </React.Fragment>
       );
     else return <CircularProgress style={{ marginTop: "15vh" }} />;

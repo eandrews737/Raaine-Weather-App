@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
-import { getWeatherByCoordinates, getCoordinatesbyIp } from "../util/api-util";
+import { getWeatherByCoordinates, getCoordinatesByIp } from "../util/api-util";
 
 class LocationSearchComponent extends React.Component {
   constructor(props) {
     super(props);
+    // defaults to Orlando's coordinates
     this.state = {
       latitude: "28.538336",
       longitude: "-81.379234"
@@ -18,7 +19,7 @@ class LocationSearchComponent extends React.Component {
     history.push("/search");
 
     // get location by ip
-    await getCoordinatesbyIp()
+    await getCoordinatesByIp()
       .then(results => {
         this.setState({ latitude: results.lat, longitude: results.lon });
       })
