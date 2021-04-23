@@ -18,7 +18,6 @@ class TodayWeatherComponent extends React.Component {
     return (
       <div className="current-weather-component">
         <div>
-          <h3 style={{ color: "gray" }}>Your Location:</h3>
           <div style={{ fontSize: "25px" }}>
             <b>
               {coordinatesAddress.city
@@ -30,18 +29,18 @@ class TodayWeatherComponent extends React.Component {
                 : coordinatesAddress.country}
             </b>
           </div>
-          <div>{moment.unix(currently.time).format("llll")}</div>
+          <div>{moment.unix(currently.time).format("ll")}</div>
           <Tooltip
             style={{ float: "right", height: "180px" }}
             title={currently.icon}
             placement="right"
           >
-            <img src={getWeatherStatusIcon(currently.icon)} />
+            <img alt="Weather Status" src={getWeatherStatusIcon(currently.icon)} />
           </Tooltip>
         </div>
         <div>
           <div className="current-weather-temp important-text">
-            {temperatureConversion(currently.temperature)}F
+            {temperatureConversion(currently.temperature)}
           </div>
           <div>{currently.summary}</div>
         </div>
@@ -54,33 +53,31 @@ class TodayWeatherComponent extends React.Component {
             float: "right"
           }}
           justify="center"
-          spacing={24}
+          spacing={0}
         >
           <Grid item sm={3}>
             <b style={{ fontSize: "13px" }}>Percipitation</b>
             <div
-              class="important-text subheader-text
-          
-        "
+              className="important-text subheader-text"
             >
               {Math.round(currently.precipProbability * 100)}%
             </div>
           </Grid>
           <Grid item sm={3}>
             <b style={{ fontSize: "13px" }}>Humidity </b>
-            <div class="important-text subheader-text">
+            <div className="important-text subheader-text">
               {Math.round(currently.humidity * 100)}%
             </div>
           </Grid>
           <Grid item sm={3}>
             <b style={{ fontSize: "13px" }}>Wind Speed </b>
-            <div class="important-text subheader-text">
+            <div className="important-text subheader-text">
               {Math.round(currently.windSpeed)} MPH
             </div>
           </Grid>
           <Grid item sm={3}>
             <b style={{ fontSize: "13px" }}>UV Index </b>
-            <div class="important-text subheader-text">
+            <div className="important-text subheader-text">
               {Math.round(currently.uvIndex)} mW
             </div>
           </Grid>

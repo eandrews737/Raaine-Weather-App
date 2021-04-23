@@ -28,15 +28,19 @@ export function dayOfWeek(dayByNumber) {
       return "Fri";
     case 6:
       return "Sat";
-    case 7:
+    default:
       return "Sun";
   }
 }
 
 // returns temperature based on selected scale
 export function temperatureConversion(temperature, isFahrenheit = true) {
-  if (isFahrenheit) return Math.round(temperature) + `${`\xB0`}`;
-  else return Math.round(temperature * (5 / 9) - 32) + `${`\xB0`}`;
+  if (isFahrenheit) {
+    return Math.round(temperature) + `${`\xB0`}` + 'F';
+  }
+  else {
+    return Math.round(temperature * (5 / 9) - 32) + `${`\xB0`}` + 'C';
+  }
 }
 
 // returns the correct icon for each weather status
@@ -68,5 +72,7 @@ export function getWeatherStatusIcon(status) {
       return thunderstormIcon;
     case "tornado":
       return tornadoIcon;
+    default:
+      return clearDayIcon;
   }
 }

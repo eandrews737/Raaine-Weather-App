@@ -1,6 +1,5 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import appIcon from "../assets/svg/protection.svg";
@@ -20,7 +19,7 @@ class HeaderComponent extends React.Component {
       <div className={classes.root}>
         <Toolbar>
           <div className="white-circle">
-            <img style={{ height: "35px", paddingTop: "7px" }} src={appIcon} />
+            <img alt="app icon" style={{ height: "35px", paddingTop: "7px" }} src={appIcon} />
           </div>
           <Typography variant="h6" color="inherit">
             Raaine
