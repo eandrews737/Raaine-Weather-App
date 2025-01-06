@@ -30,6 +30,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 `npm run deploy` -This will publish master to a branch called gp-branch. This branch controls this project's github page.
 
-## Creduts
+## Credits
 
 [ME](https://github.com/eandrews737)
